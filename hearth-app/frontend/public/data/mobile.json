@@ -1,0 +1,78 @@
+{
+  "generated_at": "2026-05-20T08:00:00Z",
+  "dau": 4_840_000,
+  "mau": 22_180_000,
+  "stickiness_pct": 21.8,
+  "app_order_share_pct": 31.8,
+  "app_order_share_trend": [
+    { "week": "W14", "pct": 33.4 },
+    { "week": "W15", "pct": 33.1 },
+    { "week": "W16", "pct": 32.8 },
+    { "week": "W17", "pct": 32.4 },
+    { "week": "W18", "pct": 32.1 },
+    { "week": "W19", "pct": 31.9 },
+    { "week": "W20", "pct": 31.8 }
+  ],
+  "payment_mix": [
+    { "method": "Hearth Pay (stored value)", "share_pct": 38.2 },
+    { "method": "Apple Pay",                  "share_pct": 26.4 },
+    { "method": "Google Pay",                 "share_pct": 11.8 },
+    { "method": "Credit / Debit card",        "share_pct": 19.0 },
+    { "method": "Gift card",                  "share_pct":  4.6 }
+  ],
+  "feature_adoption_pct": [
+    { "feature": "Mobile order-ahead",     "adoption_pct": 64.1 },
+    { "feature": "Curbside pickup",        "adoption_pct": 28.6 },
+    { "feature": "Drive-thru mobile-pay",  "adoption_pct": 41.2 },
+    { "feature": "Rewards auto-redeem",    "adoption_pct": 52.7 },
+    { "feature": "Subscription (Hearth+)", "adoption_pct":  8.4 },
+    { "feature": "Group order",            "adoption_pct":  4.1 }
+  ],
+  "promo_uplift": [
+    { "promo": "Mobile-only $2 cold brew", "uplift_pct": 18.4, "audience_m":  6.1, "redeem_rate_pct": 22.1 },
+    { "promo": "BOGO breakfast sandwich",  "uplift_pct": 24.8, "audience_m":  4.8, "redeem_rate_pct": 31.0 },
+    { "promo": "Double points Tuesday",    "uplift_pct":  9.2, "audience_m": 12.4, "redeem_rate_pct": 14.4 },
+    { "promo": "Pumpkin Spice early access","uplift_pct":  16.7, "audience_m":  3.2, "redeem_rate_pct": 27.6 }
+  ],
+  "conversion_funnel": [
+    { "step": "App open",         "rate_pct": 100.0 },
+    { "step": "Menu browse",      "rate_pct":  68.4 },
+    { "step": "Add to cart",      "rate_pct":  34.9 },
+    { "step": "Checkout start",   "rate_pct":  24.6 },
+    { "step": "Payment confirm",  "rate_pct":  20.1 },
+    { "step": "Order submitted",  "rate_pct":  18.7 }
+  ],
+  "regional_conversion": [
+    { "region": "Pacific NW",  "conv_pct": 24.1, "delta_pp": +0.4 },
+    { "region": "Southeast",   "conv_pct": 22.6, "delta_pp": +0.2 },
+    { "region": "Northeast",   "conv_pct": 21.4, "delta_pp": -0.1 },
+    { "region": "Pacific SW",  "conv_pct": 21.1, "delta_pp": +0.1 },
+    { "region": "Mountain",    "conv_pct": 20.8, "delta_pp": +0.3 },
+    { "region": "South-Central","conv_pct": 19.4, "delta_pp": -0.6 },
+    { "region": "Mid-Atlantic","conv_pct": 19.0, "delta_pp": -0.4 },
+    { "region": "Midwest",     "conv_pct": 18.7, "delta_pp": -4.1 }
+  ],
+  "loyalty_agent_recommendations": [
+    {
+      "segment": "Midwest commuters, T7D inactive",
+      "size_k": 412,
+      "next_best_offer": "$1 latte add-on with breakfast sandwich, weekdays before 9am",
+      "expected_conv_lift_pp": 3.8,
+      "rationale": "Highest historical response to morning-routine bundles; price-sensitive cohort."
+    },
+    {
+      "segment": "Hearth+ subscribers, ticket size below $7",
+      "size_k": 184,
+      "next_best_offer": "Free pastry on any cold-drink order, 14-day window",
+      "expected_conv_lift_pp": 5.1,
+      "rationale": "Lifts attach rate; subscription cohort already covers core beverage cost."
+    },
+    {
+      "segment": "Texas drive-thru regulars, mobile-app dormant",
+      "size_k": 268,
+      "next_best_offer": "Drive-thru express lane unlock + 25 bonus points",
+      "expected_conv_lift_pp": 6.4,
+      "rationale": "Re-activates mobile-pay; speeds drive-thru median in TX."
+    }
+  ]
+}

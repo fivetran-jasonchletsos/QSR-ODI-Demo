@@ -1,0 +1,35 @@
+{
+  "generated_at": "2026-05-20T08:00:00Z",
+  "catalog": "AWS Glue · hearth-odi-catalog",
+  "lake": "s3://hearth-odi-lake",
+  "format": "Apache Iceberg v2 · Parquet (ZSTD)",
+  "tables_total": 282,
+  "rows_total": 8_402_184_000,
+  "bytes_total": 14_812_400_000_000,
+  "tables": [
+    { "database": "bronze", "table": "toast_pos_orders",          "rows": 1_402_180_000, "bytes": 2_240_000_000_000, "partitions": ["business_date", "store_region"], "source_system": "toast",      "last_updated_at": "2026-05-20T07:54:00Z", "schema_columns": 64 },
+    { "database": "bronze", "table": "ncr_aloha_orders",          "rows":   894_120_000, "bytes": 1_412_000_000_000, "partitions": ["business_date", "store_region"], "source_system": "ncr_aloha",  "last_updated_at": "2026-05-20T07:53:00Z", "schema_columns": 71 },
+    { "database": "bronze", "table": "olo_orders",                "rows":   612_400_000, "bytes":   984_000_000_000, "partitions": ["business_date"],                  "source_system": "olo",        "last_updated_at": "2026-05-20T07:57:00Z", "schema_columns": 48 },
+    { "database": "bronze", "table": "app_events",                "rows": 2_812_400_000, "bytes": 3_810_000_000_000, "partitions": ["event_date", "event_name"],       "source_system": "snowplow",   "last_updated_at": "2026-05-20T07:58:00Z", "schema_columns": 96 },
+    { "database": "bronze", "table": "sfmc_engagement",           "rows":   341_200_000, "bytes":   612_000_000_000, "partitions": ["send_date"],                      "source_system": "sfmc",       "last_updated_at": "2026-05-20T07:48:00Z", "schema_columns": 54 },
+    { "database": "bronze", "table": "workday_workers",           "rows":     1_840_000, "bytes":     6_000_000_000, "partitions": ["snapshot_date"],                  "source_system": "workday",    "last_updated_at": "2026-05-20T07:42:00Z", "schema_columns": 88 },
+    { "database": "bronze", "table": "kronos_time_entries",       "rows":   612_180_000, "bytes":   428_000_000_000, "partitions": ["business_date", "store_region"], "source_system": "kronos",     "last_updated_at": "2026-05-20T07:50:00Z", "schema_columns": 32 },
+    { "database": "bronze", "table": "supplier_erp_lots",         "rows":     3_120_000, "bytes":    18_000_000_000, "partitions": ["received_date"],                  "source_system": "supplier_erp","last_updated_at":"2026-05-20T07:14:00Z", "schema_columns": 41 },
+    { "database": "silver", "table": "fct_pos_orders_unified",    "rows": 2_984_400_000, "bytes": 2_120_000_000_000, "partitions": ["business_date", "store_region", "channel"], "source_system": "derived", "last_updated_at": "2026-05-20T07:59:00Z", "schema_columns": 38 },
+    { "database": "silver", "table": "dim_stores",                "rows":         4_812, "bytes":        12_000_000, "partitions": ["state"],                          "source_system": "derived",    "last_updated_at": "2026-05-20T07:51:00Z", "schema_columns": 42 },
+    { "database": "silver", "table": "dim_menu_items",            "rows":         2_140, "bytes":         8_000_000, "partitions": [],                                 "source_system": "derived",    "last_updated_at": "2026-05-20T06:48:00Z", "schema_columns": 26 },
+    { "database": "silver", "table": "fct_loyalty_member_events", "rows":   612_300_000, "bytes":   388_000_000_000, "partitions": ["event_date", "tier"],             "source_system": "derived",    "last_updated_at": "2026-05-20T07:52:00Z", "schema_columns": 24 },
+    { "database": "gold",   "table": "fct_store_day",             "rows":     5_412_000, "bytes":     8_400_000_000, "partitions": ["business_date"],                  "source_system": "derived",    "last_updated_at": "2026-05-20T07:55:00Z", "schema_columns": 56 },
+    { "database": "gold",   "table": "fct_drive_thru_speed",      "rows":     1_204_000, "bytes":     2_100_000_000, "partitions": ["business_date", "store_region"], "source_system": "derived",    "last_updated_at": "2026-05-20T07:56:00Z", "schema_columns": 22 },
+    { "database": "gold",   "table": "fct_menu_item_sales",       "rows":   140_400_000, "bytes":    84_000_000_000, "partitions": ["business_week", "region"],        "source_system": "derived",    "last_updated_at": "2026-05-20T07:55:00Z", "schema_columns": 18 },
+    { "database": "gold",   "table": "fct_member_lifecycle",      "rows":    28_320_000, "bytes":    32_000_000_000, "partitions": ["enroll_quarter"],                 "source_system": "derived",    "last_updated_at": "2026-05-20T07:54:00Z", "schema_columns": 36 },
+    { "database": "gold",   "table": "fct_commodity_exposure",    "rows":         2_840, "bytes":         4_000_000, "partitions": ["business_week"],                  "source_system": "derived",    "last_updated_at": "2026-05-20T07:18:00Z", "schema_columns": 19 }
+  ],
+  "engines": [
+    { "name": "Snowflake", "status": "active",    "description": "Primary BI + AI workload. Reads gold + marts via Iceberg external tables (Polaris)." },
+    { "name": "Trino",     "status": "available", "description": "Ad-hoc analyst SQL. Same catalog, no re-ingest." },
+    { "name": "DuckDB",    "status": "available", "description": "Local laptop analysis of gold tables via Iceberg REST." },
+    { "name": "Spark",     "status": "available", "description": "Heavy backfill + ML feature engineering." },
+    { "name": "Athena",    "status": "demo",      "description": "Optional serverless query layer for ad-hoc audits." }
+  ]
+}

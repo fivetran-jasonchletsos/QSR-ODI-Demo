@@ -1,0 +1,58 @@
+{
+  "generated_at": "2026-05-20T08:00:00Z",
+  "as_of": "2026-05-18",
+  "kpis": [
+    { "id": "locations", "label": "Locations open", "value": 4812, "unit": "stores", "delta_label": "+38 YTD", "delta_dir": "up" },
+    { "id": "system_sales_ytd", "label": "System sales (YTD)", "value": 4.18e9, "unit": "usd", "delta_label": "+6.2% YoY", "delta_dir": "up" },
+    { "id": "system_sales_annual", "label": "Annualized run-rate", "value": 11.02e9, "unit": "usd", "delta_label": "+5.4% YoY", "delta_dir": "up" },
+    { "id": "sss_growth", "label": "Same-store sales growth", "value": 3.4, "unit": "pct", "delta_label": "+80 bps QoQ", "delta_dir": "up" },
+    { "id": "mobile_share", "label": "Mobile-app order share", "value": 31.8, "unit": "pct", "delta_label": "-1.2 pp WoW", "delta_dir": "down" },
+    { "id": "drivethru_share", "label": "Drive-thru order share", "value": 46.1, "unit": "pct", "delta_label": "+0.4 pp QoQ", "delta_dir": "up" },
+    { "id": "loyalty_members", "label": "Hearth Rewards members", "value": 28.3e6, "unit": "people", "delta_label": "+1.4M QoQ", "delta_dir": "up" },
+    { "id": "avg_ticket", "label": "Average ticket", "value": 9.47, "unit": "usd_dec", "delta_label": "+2.1% YoY", "delta_dir": "up" }
+  ],
+  "issues_today": [
+    {
+      "id": "mw-mobile-conversion",
+      "severity": "warn",
+      "owner": "Chief Digital Officer",
+      "title": "Mobile-order conversion drop in Midwest",
+      "summary": "App add-to-cart -> order conversion fell 4.1 pp in the past 7 days across IL, MI, OH stores. Push-notification CTR is steady; checkout-step abandonment is the driver.",
+      "metric": "Conversion 18.7% (T7D) vs 22.8% (P7D)",
+      "agent_recommendation": "Loyalty agent suggests a 3-tap checkout flow A/B test for the affected region."
+    },
+    {
+      "id": "bean-cost-spike",
+      "severity": "alert",
+      "owner": "Chief Restaurant Operations Officer",
+      "title": "Arabica spot price spike — Brazil drought",
+      "summary": "Brazil drought is lifting Q2 arabica futures 14% above plan. Hearth's Brazil-origin blend is 41% of green-bean spend.",
+      "metric": "Forecast COGS impact: +$28.4M (Q3 projection)",
+      "agent_recommendation": "Supply-chain agent recommends accelerating Q3 Vietnam-robusta blend share by 5 pp and hedging 60% of Q3 arabica exposure."
+    },
+    {
+      "id": "tx-drivethru-speed",
+      "severity": "warn",
+      "owner": "Chief Restaurant Operations Officer",
+      "title": "Drive-thru speed degradation in Texas",
+      "summary": "Median drive-thru service time in TX trending up: 247s (vs 198s national median). Concentrated in DFW and Houston metros at 7-9am peak.",
+      "metric": "Median DT time 247s, +49s vs national",
+      "agent_recommendation": "Staffing agent flags understaffing at peak hour at 84 TX stores; recommends a +0.6 FTE peak-hour add."
+    }
+  ],
+  "channel_mix": [
+    { "channel": "Drive-thru",      "share": 46.1 },
+    { "channel": "Mobile app",      "share": 31.8 },
+    { "channel": "In-store",        "share": 14.6 },
+    { "channel": "Delivery",        "share":  7.5 }
+  ],
+  "weekly_orders_m": [
+    { "week": "W14", "orders": 38.2 },
+    { "week": "W15", "orders": 39.1 },
+    { "week": "W16", "orders": 40.4 },
+    { "week": "W17", "orders": 40.0 },
+    { "week": "W18", "orders": 41.6 },
+    { "week": "W19", "orders": 42.3 },
+    { "week": "W20", "orders": 41.9 }
+  ]
+}

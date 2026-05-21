@@ -1,0 +1,58 @@
+{
+  "generated_at": "2026-05-20T08:00:00Z",
+  "green_bean_origin_mix": [
+    { "origin": "Brazil",   "share_pct": 41.0, "varietal": "Arabica",          "spot_price_usd_lb": 2.84, "yoy_pct": +14.2 },
+    { "origin": "Colombia", "share_pct": 18.0, "varietal": "Arabica",          "spot_price_usd_lb": 3.18, "yoy_pct":  +6.4 },
+    { "origin": "Ethiopia", "share_pct": 14.0, "varietal": "Arabica",          "spot_price_usd_lb": 3.92, "yoy_pct":  +8.8 },
+    { "origin": "Vietnam",  "share_pct": 16.0, "varietal": "Robusta",          "spot_price_usd_lb": 1.92, "yoy_pct":  +3.1 },
+    { "origin": "Guatemala","share_pct":  6.0, "varietal": "Arabica",          "spot_price_usd_lb": 3.06, "yoy_pct":  +5.2 },
+    { "origin": "Indonesia","share_pct":  5.0, "varietal": "Arabica + Robusta","spot_price_usd_lb": 2.58, "yoy_pct":  +4.0 }
+  ],
+  "commodity_exposure_m": [
+    { "commodity": "Green coffee (arabica)", "fy_spend_m": 488.0, "hedged_pct": 42.0, "unhedged_at_risk_m": 28.4 },
+    { "commodity": "Green coffee (robusta)", "fy_spend_m":  98.0, "hedged_pct": 35.0, "unhedged_at_risk_m":  3.1 },
+    { "commodity": "Dairy (whole + oat)",    "fy_spend_m": 612.0, "hedged_pct": 28.0, "unhedged_at_risk_m": 22.6 },
+    { "commodity": "Wheat flour + bakery",   "fy_spend_m": 184.0, "hedged_pct": 18.0, "unhedged_at_risk_m":  6.4 },
+    { "commodity": "Sugar + sweeteners",     "fy_spend_m":  62.0, "hedged_pct": 22.0, "unhedged_at_risk_m":  2.0 },
+    { "commodity": "Paper + cups + sleeves", "fy_spend_m": 148.0, "hedged_pct":  0.0, "unhedged_at_risk_m":  4.1 }
+  ],
+  "risk_flags": [
+    {
+      "id": "brazil-drought",
+      "severity": "alert",
+      "title": "Brazil drought lifting Q2/Q3 arabica futures",
+      "summary": "Cerrado region drought is the worst since 2018. Arabica spot up 14.2% YoY. Hearth's Brazil-origin blend is 41% of green-bean spend.",
+      "owner": "Coffee sourcing",
+      "exposure_m": 28.4,
+      "action": "Hedge 60% of Q3 exposure, accelerate Vietnam robusta blend share +5 pp."
+    },
+    {
+      "id": "dairy-oat-supply",
+      "severity": "warn",
+      "title": "Oat milk supplier capacity constrained — Pacific NW + Mountain",
+      "summary": "Primary oat-milk supplier (Cascade Plant Foods) reports 14-day lead time vs 4-day SLA. PNW + Mountain stores most exposed.",
+      "owner": "Dairy + alt-milk sourcing",
+      "exposure_m": 4.2,
+      "action": "Activate secondary contract with Northwood Oats; stage 30-day safety stock at 2 PNW DCs."
+    },
+    {
+      "id": "paper-cup-tariff",
+      "severity": "warn",
+      "title": "Paper-cup import duty review",
+      "summary": "Section 232 review on imported paperboard could raise unit cost 6-9% if implemented. 38% of cup spend is import-sourced.",
+      "owner": "Smallwares + packaging",
+      "exposure_m": 3.4,
+      "action": "Pre-buy 90-day buffer; brief CFO on contingency NPV."
+    }
+  ],
+  "in_store_sku_availability": [
+    { "region": "Pacific NW",   "core_sku_avail_pct": 96.4, "alt_milk_avail_pct": 88.2, "trend": "down" },
+    { "region": "Pacific SW",   "core_sku_avail_pct": 98.1, "alt_milk_avail_pct": 95.6, "trend": "flat" },
+    { "region": "Mountain",     "core_sku_avail_pct": 97.4, "alt_milk_avail_pct": 89.4, "trend": "down" },
+    { "region": "South-Central","core_sku_avail_pct": 98.6, "alt_milk_avail_pct": 96.1, "trend": "flat" },
+    { "region": "Midwest",      "core_sku_avail_pct": 97.8, "alt_milk_avail_pct": 94.8, "trend": "up"   },
+    { "region": "Northeast",    "core_sku_avail_pct": 98.2, "alt_milk_avail_pct": 95.0, "trend": "flat" },
+    { "region": "Southeast",    "core_sku_avail_pct": 98.4, "alt_milk_avail_pct": 96.6, "trend": "up"   },
+    { "region": "Mid-Atlantic", "core_sku_avail_pct": 97.9, "alt_milk_avail_pct": 94.4, "trend": "flat" }
+  ]
+}

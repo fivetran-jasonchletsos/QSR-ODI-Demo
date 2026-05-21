@@ -1,0 +1,15 @@
+.DS_Store
+.vscode/
+.idea/
+.env
+.env.local
+*.swp
+
+# Node / frontend
+node_modules/
+hearth-app/frontend/node_modules/
+hearth-app/frontend/dist/
+
+# Build artifacts
+logs/
+*.log

@@ -1,0 +1,66 @@
+{
+  "generated_at": "2026-05-20T08:00:00Z",
+  "headcount_total": 92_400,
+  "store_avg_headcount": 19.2,
+  "shift_fill_rate_pct": 94.6,
+  "scheduling_compliance_pct": 96.3,
+  "attrition_rate_annual_pct": 78.4,
+  "employee_nps": 38,
+  "labor_cost_pct_system": 28.7,
+  "labor_cost_trend": [
+    { "month": "2025-12", "pct": 29.4 },
+    { "month": "2026-01", "pct": 29.2 },
+    { "month": "2026-02", "pct": 29.0 },
+    { "month": "2026-03", "pct": 28.9 },
+    { "month": "2026-04", "pct": 28.8 },
+    { "month": "2026-05", "pct": 28.7 }
+  ],
+  "forecast_vs_actual": [
+    { "week": "W14", "forecast_hours_k": 1_180, "actual_hours_k": 1_212, "variance_pct": +2.7 },
+    { "week": "W15", "forecast_hours_k": 1_185, "actual_hours_k": 1_204, "variance_pct": +1.6 },
+    { "week": "W16", "forecast_hours_k": 1_192, "actual_hours_k": 1_198, "variance_pct": +0.5 },
+    { "week": "W17", "forecast_hours_k": 1_188, "actual_hours_k": 1_222, "variance_pct": +2.9 },
+    { "week": "W18", "forecast_hours_k": 1_204, "actual_hours_k": 1_214, "variance_pct": +0.8 },
+    { "week": "W19", "forecast_hours_k": 1_210, "actual_hours_k": 1_198, "variance_pct": -1.0 },
+    { "week": "W20", "forecast_hours_k": 1_218, "actual_hours_k": 1_186, "variance_pct": -2.6 }
+  ],
+  "attrition_by_region": [
+    { "region": "Pacific NW",   "attrition_pct": 64.2 },
+    { "region": "Northeast",    "attrition_pct": 71.6 },
+    { "region": "Mid-Atlantic", "attrition_pct": 74.0 },
+    { "region": "Southeast",    "attrition_pct": 78.1 },
+    { "region": "Mountain",     "attrition_pct": 76.8 },
+    { "region": "Pacific SW",   "attrition_pct": 81.2 },
+    { "region": "Midwest",      "attrition_pct": 83.6 },
+    { "region": "South-Central","attrition_pct": 88.4 }
+  ],
+  "staffing_agent_suggestions": [
+    {
+      "scope": "South-Central · DFW + Houston metros",
+      "stores_affected": 84,
+      "action": "Add 0.6 FTE at 6:30-9:30am peak-hour shift",
+      "expected_outcome": "Reduce drive-thru median 247s -> 198s (-49s); +1.2 pp throughput",
+      "weekly_labor_delta_usd": +96_400,
+      "weekly_revenue_delta_usd": +482_000,
+      "confidence": "high"
+    },
+    {
+      "scope": "Midwest · IL, MI, OH morning peak",
+      "stores_affected": 218,
+      "action": "Re-balance scheduled hours 8-10am to 7:30-9:30am",
+      "expected_outcome": "Better aligns labor to mobile-order pickup window; lifts mobile conversion",
+      "weekly_labor_delta_usd": 0,
+      "weekly_revenue_delta_usd": +312_000,
+      "confidence": "medium"
+    },
+    {
+      "scope": "Pacific NW · weekend afternoon shoulder",
+      "stores_affected": 198,
+      "action": "Trim 0.4 FTE 14:00-16:00 weekend, redeploy to morning peak",
+      "expected_outcome": "Holds service-time within SLA; cuts labor pct by 0.3 pp",
+      "weekly_labor_delta_usd": -84_200,
+      "weekly_revenue_delta_usd": -18_000,
+      "confidence": "high"
+    }
+  ]
+}

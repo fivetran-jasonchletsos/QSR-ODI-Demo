@@ -1,0 +1,50 @@
+{
+  "generated_at": "2026-05-20T08:00:00Z",
+  "top_skus": [
+    { "sku": "BEV-001", "name": "Hearth House Latte (16oz)",      "category": "Espresso",       "ytd_revenue": 412_400_000, "units_m": 47.6, "contrib_margin_pct": 71.4 },
+    { "sku": "BEV-014", "name": "Cold Brew (24oz)",               "category": "Cold Coffee",    "ytd_revenue": 308_200_000, "units_m": 36.1, "contrib_margin_pct": 74.8 },
+    { "sku": "BEV-008", "name": "Caramel Macchiato",              "category": "Espresso",       "ytd_revenue": 261_500_000, "units_m": 28.9, "contrib_margin_pct": 68.9 },
+    { "sku": "FOOD-201","name": "Bacon Egg & Cheddar Biscuit",    "category": "Breakfast",      "ytd_revenue": 248_900_000, "units_m": 31.6, "contrib_margin_pct": 58.2 },
+    { "sku": "BEV-019", "name": "Iced Vanilla Oat Latte",         "category": "Cold Coffee",    "ytd_revenue": 222_400_000, "units_m": 24.4, "contrib_margin_pct": 70.1 },
+    { "sku": "FOOD-218","name": "Avocado Toast",                  "category": "Breakfast",      "ytd_revenue": 184_700_000, "units_m": 17.3, "contrib_margin_pct": 63.6 },
+    { "sku": "BEV-021", "name": "Brown Sugar Espresso Shake",     "category": "Espresso",       "ytd_revenue": 168_100_000, "units_m": 16.8, "contrib_margin_pct": 67.4 },
+    { "sku": "FOOD-244","name": "Sausage Croissant Sandwich",     "category": "Breakfast",      "ytd_revenue": 158_900_000, "units_m": 19.4, "contrib_margin_pct": 56.8 },
+    { "sku": "BEV-002", "name": "Drip Coffee (Hearth Blend)",     "category": "Brewed Coffee",  "ytd_revenue": 148_200_000, "units_m": 36.8, "contrib_margin_pct": 78.6 },
+    { "sku": "BEV-030", "name": "Matcha Oat Latte",               "category": "Tea",            "ytd_revenue": 124_700_000, "units_m": 12.3, "contrib_margin_pct": 69.2 },
+    { "sku": "FOOD-260","name": "Cinnamon Roll (warm)",           "category": "Bakery",         "ytd_revenue": 118_600_000, "units_m": 18.7, "contrib_margin_pct": 64.4 },
+    { "sku": "BEV-035", "name": "Chai Tea Latte",                 "category": "Tea",            "ytd_revenue": 108_900_000, "units_m": 12.6, "contrib_margin_pct": 70.3 },
+    { "sku": "FOOD-272","name": "Blueberry Muffin",               "category": "Bakery",         "ytd_revenue":  96_400_000, "units_m": 18.1, "contrib_margin_pct": 65.7 },
+    { "sku": "BEV-012", "name": "Americano (16oz)",               "category": "Espresso",       "ytd_revenue":  88_700_000, "units_m": 18.4, "contrib_margin_pct": 76.4 },
+    { "sku": "FOOD-281","name": "Turkey Bacon Wrap (lunch)",      "category": "Lunch",          "ytd_revenue":  84_200_000, "units_m":  8.8, "contrib_margin_pct": 54.2 },
+    { "sku": "BEV-044", "name": "Espresso & Tonic",               "category": "Specialty",      "ytd_revenue":  78_100_000, "units_m":  6.9, "contrib_margin_pct": 72.1 },
+    { "sku": "FOOD-204","name": "Spinach Feta Wrap",              "category": "Breakfast",      "ytd_revenue":  74_500_000, "units_m":  8.4, "contrib_margin_pct": 59.4 },
+    { "sku": "BEV-048", "name": "Strawberry Cream Cold Brew",     "category": "Cold Coffee",    "ytd_revenue":  72_900_000, "units_m":  7.9, "contrib_margin_pct": 68.6 },
+    { "sku": "BEV-051", "name": "Mocha Frappe",                   "category": "Blended",        "ytd_revenue":  68_400_000, "units_m":  7.1, "contrib_margin_pct": 66.4 },
+    { "sku": "FOOD-290","name": "Chocolate Chunk Cookie",         "category": "Bakery",         "ytd_revenue":  61_800_000, "units_m": 12.4, "contrib_margin_pct": 67.1 }
+  ],
+  "recent_changes": [
+    { "name": "Brown Sugar Espresso Shake (launch)", "launched": "2026-02-14", "impact_pct_units": +4.2, "impact_pct_margin": +0.4, "note": "Cannibalized Mocha Frappe by 1.1 pp; net positive on attach." },
+    { "name": "Pumpkin Spice Latte (early Q3 pull)", "launched": "2025-09-02", "impact_pct_units": +3.6, "impact_pct_margin": +0.7, "note": "PNW + Northeast over-index. Plans to repeat in 2026." },
+    { "name": "Removed: Vanilla Sweet Cream Brulee", "launched": "2026-01-08", "impact_pct_units": -0.4, "impact_pct_margin": +0.3, "note": "Low velocity SKU retired; margin lift from simplified prep." },
+    { "name": "Avocado Toast (national)",            "launched": "2025-11-12", "impact_pct_units": +1.9, "impact_pct_margin": -0.2, "note": "Lifts food attach; margin softer than baseline target." }
+  ],
+  "regional_variations": [
+    { "region": "Pacific NW",  "highlight_sku": "Cold Brew (24oz)",          "index_vs_national": 1.42, "note": "Cold-brew over-indexes; pumpkin spice 1.6x national in Sep-Oct." },
+    { "region": "South-Central","highlight_sku": "Cold Brew (24oz)",         "index_vs_national": 1.61, "note": "Texas cold-brew 1.6x national; Iced Vanilla Oat Latte 1.4x." },
+    { "region": "Southeast",   "highlight_sku": "Sweet Tea (regional only)", "index_vs_national": 2.10, "note": "Regional sweet-tea SKU outsells national by 2.1x in SE." },
+    { "region": "Northeast",   "highlight_sku": "Drip Coffee (Hearth Blend)","index_vs_national": 1.28, "note": "Drip + breakfast attach over-indexes; lower cold-drink mix." },
+    { "region": "Mountain",    "highlight_sku": "Espresso & Tonic",          "index_vs_national": 1.34, "note": "Specialty espresso mix 1.3x national." }
+  ],
+  "agent_recommendations": [
+    {
+      "title": "Price test: House Latte 16oz +$0.20 in Pacific NW + Northeast",
+      "rationale": "Elasticity model shows -0.32 in PNW/NE vs -0.61 national. Expected margin lift $4.6M annualized, single-digit unit loss.",
+      "owner_role": "Menu pricing"
+    },
+    {
+      "title": "Reduce Mocha Frappe SKU footprint in Southeast",
+      "rationale": "SE redemption index 0.68; freezes operational capacity at peak. Re-allocate to Strawberry Cream Cold Brew (SE attach 1.4x).",
+      "owner_role": "Menu architecture"
+    }
+  ]
+}
