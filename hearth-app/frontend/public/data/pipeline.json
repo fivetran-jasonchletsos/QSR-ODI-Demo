@@ -1,26 +1,190 @@
 {
   "generated_at": "2026-05-20T08:00:00Z",
   "connectors": [
-    { "name": "Toast POS",                     "source": "POS",            "status": "ok",      "rows_24h": 14_820_400, "freshness_min":   4, "tables": 18, "lineage": "Fivetran" },
-    { "name": "NCR Aloha POS",                 "source": "POS",            "status": "ok",      "rows_24h":  9_618_200, "freshness_min":   6, "tables": 22, "lineage": "Fivetran" },
-    { "name": "Square Terminal (regional)",    "source": "POS",            "status": "ok",      "rows_24h":  1_204_300, "freshness_min":   4, "tables":  9, "lineage": "Fivetran" },
-    { "name": "Olo Ordering",                  "source": "Mobile + Web",   "status": "ok",      "rows_24h":  6_184_900, "freshness_min":   3, "tables": 14, "lineage": "Fivetran" },
-    { "name": "DoorDash Marketplace",          "source": "Delivery",       "status": "ok",      "rows_24h":  1_022_400, "freshness_min":   8, "tables":  7, "lineage": "Fivetran" },
-    { "name": "Uber Eats",                     "source": "Delivery",       "status": "ok",      "rows_24h":    822_100, "freshness_min":   9, "tables":  7, "lineage": "Fivetran" },
-    { "name": "Grubhub",                       "source": "Delivery",       "status": "warn",    "rows_24h":    312_400, "freshness_min":  42, "tables":  6, "lineage": "Fivetran", "note": "Upstream API rate-limited 03:14 UTC." },
-    { "name": "Salesforce Marketing Cloud",    "source": "Loyalty + CRM",  "status": "ok",      "rows_24h":  3_412_700, "freshness_min":  12, "tables": 24, "lineage": "Fivetran" },
-    { "name": "Hearth App Events (Snowplow)",  "source": "Product",        "status": "ok",      "rows_24h": 28_413_900, "freshness_min":   2, "tables": 11, "lineage": "Fivetran" },
-    { "name": "Workday HCM",                   "source": "Workforce",      "status": "ok",      "rows_24h":    184_700, "freshness_min":  18, "tables": 16, "lineage": "Fivetran" },
-    { "name": "Kronos / UKG Time + Attend",    "source": "Workforce",      "status": "ok",      "rows_24h":  1_204_400, "freshness_min":  10, "tables":  9, "lineage": "Fivetran" },
-    { "name": "Coffee + Dairy ERP (Oracle)",   "source": "Supply chain",   "status": "ok",      "rows_24h":     61_800, "freshness_min":  46, "tables": 12, "lineage": "Fivetran" },
-    { "name": "Yelp Reviews",                  "source": "Reviews",        "status": "ok",      "rows_24h":     22_400, "freshness_min":  60, "tables":  4, "lineage": "Fivetran" },
-    { "name": "Google Reviews",                "source": "Reviews",        "status": "ok",      "rows_24h":     31_200, "freshness_min":  60, "tables":  5, "lineage": "Fivetran" }
+    {
+      "name": "Toast POS",
+      "source": "POS",
+      "status": "ok",
+      "rows_24h": 14820400,
+      "freshness_min": 4,
+      "tables": 18,
+      "lineage": "Fivetran",
+      "fivetran_id": "fostering_boxing"
+    },
+    {
+      "name": "NCR Aloha POS",
+      "source": "POS",
+      "status": "ok",
+      "rows_24h": 9618200,
+      "freshness_min": 6,
+      "tables": 22,
+      "lineage": "Fivetran",
+      "fivetran_id": "infrequent_supervisory"
+    },
+    {
+      "name": "Square Terminal (regional)",
+      "source": "POS",
+      "status": "ok",
+      "rows_24h": 1204300,
+      "freshness_min": 4,
+      "tables": 9,
+      "lineage": "Fivetran",
+      "fivetran_id": "misunderstanding_loud"
+    },
+    {
+      "name": "Olo Ordering",
+      "source": "Mobile + Web",
+      "status": "ok",
+      "rows_24h": 6184900,
+      "freshness_min": 3,
+      "tables": 14,
+      "lineage": "Fivetran",
+      "fivetran_id": "appendage_maintain"
+    },
+    {
+      "name": "DoorDash Marketplace",
+      "source": "Delivery",
+      "status": "ok",
+      "rows_24h": 1022400,
+      "freshness_min": 8,
+      "tables": 7,
+      "lineage": "Fivetran",
+      "fivetran_id": "calomel_psychiatrist"
+    },
+    {
+      "name": "Uber Eats",
+      "source": "Delivery",
+      "status": "ok",
+      "rows_24h": 822100,
+      "freshness_min": 9,
+      "tables": 7,
+      "lineage": "Fivetran",
+      "fivetran_id": "guidance_elixir"
+    },
+    {
+      "name": "Grubhub",
+      "source": "Delivery",
+      "status": "warn",
+      "rows_24h": 312400,
+      "freshness_min": 42,
+      "tables": 6,
+      "lineage": "Fivetran",
+      "fivetran_id": "unilateral_choir",
+      "note": "Upstream API rate-limited 03:14 UTC."
+    },
+    {
+      "name": "Salesforce Marketing Cloud",
+      "source": "Loyalty + CRM",
+      "status": "ok",
+      "rows_24h": 3412700,
+      "freshness_min": 12,
+      "tables": 24,
+      "lineage": "Fivetran",
+      "fivetran_id": "rubbing_thrower"
+    },
+    {
+      "name": "Hearth App Events (Snowplow)",
+      "source": "Product",
+      "status": "ok",
+      "rows_24h": 28413900,
+      "freshness_min": 2,
+      "tables": 11,
+      "lineage": "Fivetran",
+      "fivetran_id": "perceiving_loomed"
+    },
+    {
+      "name": "Workday HCM",
+      "source": "Workforce",
+      "status": "ok",
+      "rows_24h": 184700,
+      "freshness_min": 18,
+      "tables": 16,
+      "lineage": "Fivetran",
+      "fivetran_id": "amity_distal"
+    },
+    {
+      "name": "Kronos / UKG Time + Attend",
+      "source": "Workforce",
+      "status": "ok",
+      "rows_24h": 1204400,
+      "freshness_min": 10,
+      "tables": 9,
+      "lineage": "Fivetran",
+      "fivetran_id": "useable_busboy"
+    },
+    {
+      "name": "Coffee + Dairy ERP (Oracle)",
+      "source": "Supply chain",
+      "status": "ok",
+      "rows_24h": 61800,
+      "freshness_min": 46,
+      "tables": 12,
+      "lineage": "Fivetran",
+      "fivetran_id": "illusion_preflight"
+    },
+    {
+      "name": "Yelp Reviews",
+      "source": "Reviews",
+      "status": "ok",
+      "rows_24h": 22400,
+      "freshness_min": 60,
+      "tables": 4,
+      "lineage": "Fivetran",
+      "fivetran_id": "stuffy_hath"
+    },
+    {
+      "name": "Google Reviews",
+      "source": "Reviews",
+      "status": "ok",
+      "rows_24h": 31200,
+      "freshness_min": 60,
+      "tables": 5,
+      "lineage": "Fivetran",
+      "fivetran_id": "sparingly_far"
+    }
   ],
   "dbt_layers": [
-    { "layer": "bronze", "rows_in": 67_300_000, "rows_out": 67_300_000, "tables": 168, "last_run_min_ago":  4, "status": "ok",      "tests_passed":  84, "tests_failed": 0 },
-    { "layer": "silver", "rows_in": 67_300_000, "rows_out": 51_240_000, "tables":  72, "last_run_min_ago":  6, "status": "ok",      "tests_passed": 218, "tests_failed": 0 },
-    { "layer": "gold",   "rows_in": 51_240_000, "rows_out":  8_412_000, "tables":  28, "last_run_min_ago":  9, "status": "ok",      "tests_passed": 142, "tests_failed": 1, "tests_failed_note": "fct_drive_thru_speed: 2 nulls in TX-DFW p95 (downstream of Toast freshness blip)." },
-    { "layer": "marts",  "rows_in":  8_412_000, "rows_out":  1_104_000, "tables":  14, "last_run_min_ago": 12, "status": "ok",      "tests_passed":  68, "tests_failed": 0 }
+    {
+      "layer": "bronze",
+      "rows_in": 67300000,
+      "rows_out": 67300000,
+      "tables": 168,
+      "last_run_min_ago": 4,
+      "status": "ok",
+      "tests_passed": 84,
+      "tests_failed": 0
+    },
+    {
+      "layer": "silver",
+      "rows_in": 67300000,
+      "rows_out": 51240000,
+      "tables": 72,
+      "last_run_min_ago": 6,
+      "status": "ok",
+      "tests_passed": 218,
+      "tests_failed": 0
+    },
+    {
+      "layer": "gold",
+      "rows_in": 51240000,
+      "rows_out": 8412000,
+      "tables": 28,
+      "last_run_min_ago": 9,
+      "status": "ok",
+      "tests_passed": 142,
+      "tests_failed": 1,
+      "tests_failed_note": "drive_thru_speed model: 2 nulls in TX-DFW p95 (downstream of Toast freshness blip)."
+    },
+    {
+      "layer": "marts",
+      "rows_in": 8412000,
+      "rows_out": 1104000,
+      "tables": 14,
+      "last_run_min_ago": 12,
+      "status": "ok",
+      "tests_passed": 68,
+      "tests_failed": 0
+    }
   ],
   "failure_scenarios": [
     {
