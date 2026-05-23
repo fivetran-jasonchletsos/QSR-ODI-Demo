@@ -5,6 +5,7 @@ const NAV: { to: string; label: string }[] = [
   { to: '/operations', label: 'Operations' },
   { to: '/mobile', label: 'Mobile + Loyalty' },
   { to: '/menu', label: 'Menu' },
+  { to: '/dbt-wizard/scenario', label: 'dbt-wizard' },
   { to: '/architecture', label: 'Architecture' },
   { to: '/pipeline', label: 'Pipeline' },
   { to: '/policy', label: 'Policy' },
@@ -14,7 +15,7 @@ const NAV: { to: string; label: string }[] = [
 export default function Layout() {
   return (
     <div className="min-h-screen flex flex-col">
-      <header className="border-b border-[var(--hairline)] bg-[var(--paper)]/95 backdrop-blur sticky top-0 z-30">
+      <header className="border-b-2 border-[var(--hairline)] bg-[var(--paper)]/95 backdrop-blur sticky top-0 z-30">
         <div className="brand-rail" />
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex items-center gap-6">
           <NavLink to="/" className="flex items-center gap-2.5 shrink-0">
@@ -33,7 +34,7 @@ export default function Layout() {
                 className={({ isActive }) =>
                   `px-3 py-1.5 text-sm rounded-md whitespace-nowrap transition-colors ${
                     isActive
-                      ? 'bg-[var(--copper-bg)] text-[var(--espresso-deep)] font-semibold'
+                      ? 'bg-[var(--copper-bg)] text-[var(--espresso-deep)] font-bold ring-1 ring-[var(--copper)]/40 shadow-sm'
                       : 'text-[var(--ink-muted)] hover:text-[var(--espresso-deep)] hover:bg-[var(--cream-deep)]'
                   }`
                 }
@@ -78,10 +79,19 @@ export default function Layout() {
           <div className="text-xs text-[var(--ink-muted)] leading-relaxed">
             <span className="font-serif font-semibold text-[var(--espresso-deep)]">Hearth Coffee Co.</span> is a fictional QSR chain. Synthetic data only. Reference build for the Fivetran Open Data Infrastructure pattern.
           </div>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 flex-wrap">
             <span className="layer-chip bronze">Bronze</span>
             <span className="layer-chip silver">Silver</span>
             <span className="layer-chip gold">Gold</span>
+            <a
+              href={`${(import.meta.env.BASE_URL ?? '/').replace(/\/$/, '')}/Hearth-QSR-3min-Demo-Runbook.pdf`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 rounded px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider border transition-colors hover:bg-[var(--cream-deep)]"
+              style={{ color: 'var(--copper-dim)', borderColor: 'var(--hairline)' }}
+            >
+              3-min Runbook
+            </a>
           </div>
         </div>
       </footer>

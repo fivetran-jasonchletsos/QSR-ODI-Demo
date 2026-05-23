@@ -1,5 +1,9 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useJson } from '../data';
+
+const FIVETRAN_BASE = 'https://fivetran.com/dashboard/connectors';
+const FIVETRAN_DASHBOARD_URL = 'https://fivetran.com/dashboard/connections';
 
 type Connector = {
   name: string;
@@ -9,6 +13,7 @@ type Connector = {
   freshness_min: number;
   tables: number;
   lineage: string;
+  fivetran_id?: string;
   note?: string;
 };
 type Layer = {
@@ -55,6 +60,7 @@ export default function PipelinePage() {
                 <th className="text-right px-4 py-2 font-semibold uppercase text-[11px] tracking-wider">Freshness</th>
                 <th className="text-right px-4 py-2 font-semibold uppercase text-[11px] tracking-wider">Tables</th>
                 <th className="text-left px-4 py-2 font-semibold uppercase text-[11px] tracking-wider">Lineage</th>
+                <th className="text-left px-4 py-2 font-semibold uppercase text-[11px] tracking-wider">Fivetran</th>
               </tr>
             </thead>
             <tbody>
@@ -70,6 +76,21 @@ export default function PipelinePage() {
                   <td className="px-4 py-2.5 text-right font-mono text-[12px] tabular">{c.freshness_min}m</td>
                   <td className="px-4 py-2.5 text-right font-mono text-[12px] tabular">{c.tables}</td>
                   <td className="px-4 py-2.5"><span className="code-chip">{c.lineage}</span></td>
+                  <td className="px-4 py-2.5">
+                    {c.fivetran_id && (
+                      <div className="flex flex-col gap-1">
+                        <span className="code-chip text-[10px]">{c.fivetran_id}</span>
+                        <a
+                          href={`${FIVETRAN_BASE}/${c.fivetran_id}`}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="text-[10px] font-semibold text-[var(--copper-dim)] hover:underline whitespace-nowrap"
+                        >
+                          Open in Fivetran →
+                        </a>
+                      </div>
+                    )}
+                  </td>
                 </tr>
               ))}
             </tbody>
@@ -99,6 +120,44 @@ export default function PipelinePage() {
         ))}
       </section>
 
+      {/* dbt-wizard callout */}
+      <section
+        className="research-card p-5 mb-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4"
+        style={{ borderLeft: '4px solid var(--copper)' }}
+      >
+        <div>
+          <div className="eyebrow mb-1" style={{ color: 'var(--copper-dim)' }}>dbt-wizard · missing model demo</div>
+          <div className="font-serif text-lg font-semibold text-[var(--espresso-deep)]">
+            When a question has no gold table — build one in 90 seconds
+          </div>
+          <p className="text-sm text-[var(--ink-muted)] mt-0.5 max-w-2xl">
+            COO asks: "Why did drive-thru lane speed slip 22 seconds at franchise stores Friday dinner?"
+            No <span className="font-mono">gold.fct_dt_speed_by_ownership_daypart_daily</span> exists. Ops Sync meets in 6 hours.
+            Four sub-agents author, test, and materialize the model live on screen.
+          </p>
+        </div>
+        <div className="flex items-center gap-3 shrink-0">
+          <Link
+            to="/dbt-wizard/scenario"
+            className="inline-flex items-center gap-2 rounded-md font-semibold px-5 py-2.5 text-white hover:opacity-95 transition-opacity whitespace-nowrap"
+            style={{ background: 'var(--copper)' }}
+          >
+            See the scenario
+            <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+              <path d="M5 12h14M13 5l7 7-7 7" />
+            </svg>
+          </Link>
+          <a
+            href={FIVETRAN_DASHBOARD_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm font-medium text-[var(--ink-muted)] hover:text-[var(--espresso-deep)] underline underline-offset-4 whitespace-nowrap"
+          >
+            All connectors in Fivetran →
+          </a>
+        </div>
+      </section>
+
       <section className="mb-10">
         <div className="flex items-baseline justify-between mb-3">
           <div>
@@ -120,7 +179,7 @@ export default function PipelinePage() {
                 </div>
                 <button
                   onClick={() => setActiveScenario(active ? null : s.id)}
-                  className="mt-4 px-3 py-1.5 text-xs font-semibold rounded-md border border-[var(--copper)] text-[var(--copper-dim)] hover:bg-[var(--copper-bg)] transition-colors"
+                  className="mt-4 btn-copper"
                 >
                   {active ? 'Reset' : 'Trigger simulation'}
                 </button>

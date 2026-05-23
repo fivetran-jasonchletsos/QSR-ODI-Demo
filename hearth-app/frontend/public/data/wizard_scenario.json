@@ -1,0 +1,46 @@
+{
+  "company": "Hearth Coffee Co.",
+  "request_id": "BLD-2026-05-23-0012",
+  "requested_by": "Maria Santos, COO",
+  "requested_at": "2026-05-23T08:15:00-05:00",
+  "timezone_label": "Friday 08:15 CST",
+  "question": "Why did drive-thru lane speed slip 22 seconds at franchise stores during Friday dinner this past week vs corp stores?",
+  "metric_label": "Drive-thru speed by ownership type, daypart, and day",
+  "metric_code": "gold.fct_dt_speed_by_ownership_daypart_daily",
+  "sop_meeting_at": "2026-05-23T14:15:00-05:00",
+  "sop_meeting_label": "Friday 14:15 CST · Ops Sync",
+  "target_schema": "gold",
+  "target_model": "fct_dt_speed_by_ownership_daypart_daily",
+  "target_grain": "one row per (ownership_type, daypart, calendar_date)",
+  "prior_crisis_id": "INC-2026-05-19-0008",
+  "ops_segment": "Franchise Operations",
+  "service_segment": "Drive-Thru",
+  "upstream_models": [
+    {
+      "model": "silver.fct_order_transaction",
+      "layer": "silver",
+      "grain": "transaction_id",
+      "description": "POS-sourced order records with entry_ts, confirm_ts, and serve_ts. Includes ownership_type (franchise, corporate), store_id, and daypart bucket (breakfast, lunch, dinner, late-night)."
+    },
+    {
+      "model": "silver.dim_store",
+      "layer": "silver",
+      "grain": "store_id",
+      "description": "Store master with ownership_type, franchisee_group, region, and POS firmware version. The firmware_version column was added last quarter — version 4.2.1 carries the loyalty-program update."
+    },
+    {
+      "model": "silver.fct_loyalty_event",
+      "layer": "silver",
+      "grain": "event_id",
+      "description": "Loyalty program interaction events at the POS. Includes order_confirm_add_ms — the milliseconds added to order-confirm time by the loyalty lookup step when the POS firmware processes it inline rather than async."
+    },
+    {
+      "model": "silver.fct_daypart_calendar",
+      "layer": "silver",
+      "grain": "calendar_date · daypart",
+      "description": "Calendar spine with daypart classifications (breakfast 05:00-10:30, lunch 10:30-14:00, dinner 16:00-20:00, late-night 20:00-02:00). Joins to order_transaction on calendar_date and hour bucket."
+    }
+  ],
+  "manual_time_days": "3 to 5 days",
+  "build_room_seconds": 90
+}

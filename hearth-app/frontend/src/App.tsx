@@ -9,6 +9,9 @@ import OperationsPage from './pages/OperationsPage';
 import MenuPage from './pages/MenuPage';
 import PolicyPage from './pages/PolicyPage';
 import NotFoundPage from './pages/NotFoundPage';
+import DriveThruScenarioPage from './pages/DriveThruScenarioPage';
+import DriveThruWizardLivePage from './pages/DriveThruWizardLivePage';
+import DriveThruOutcomePage from './pages/DriveThruOutcomePage';
 
 export default function App() {
   return (
@@ -23,6 +26,9 @@ export default function App() {
           <Route path="/pipeline" element={<PipelinePage />} />
           <Route path="/policy" element={<PolicyPage />} />
           <Route path="/about" element={<AboutPage />} />
+          <Route path="/dbt-wizard/scenario" element={<DriveThruScenarioPage />} />
+          <Route path="/dbt-wizard/live" element={<DriveThruWizardLivePage />} />
+          <Route path="/dbt-wizard/outcome" element={<DriveThruOutcomePage />} />
           <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>

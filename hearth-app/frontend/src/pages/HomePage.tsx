@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { useJson, fmtMoney, fmtNum } from '../data';
 import { USCartogram } from '../components/USMap';
 
@@ -155,6 +156,59 @@ export default function HomePage() {
           {summary.data && <WeeklyOrdersChart data={summary.data.weekly_orders_m} />}
         </div>
       </section>
+
+      {/* dbt-wizard hero */}
+      <section
+        className="rounded-lg border border-[var(--hairline)] p-6 sm:p-8 mb-10"
+        style={{ borderLeft: '5px solid var(--copper)', background: 'linear-gradient(135deg, #ffffff 0%, var(--copper-bg) 160%)' }}
+      >
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+          <div className="md:col-span-7">
+            <div className="eyebrow mb-2" style={{ color: 'var(--copper-dim)' }}>dbt-wizard · missing gold model demo</div>
+            <h2 className="font-serif text-2xl sm:text-3xl font-semibold text-[var(--espresso-deep)] leading-tight">
+              COO question. No gold table. Ops Sync in 6 hours.
+            </h2>
+            <p className="mt-3 text-sm text-[var(--ink-muted)] leading-relaxed max-w-2xl">
+              "Why did drive-thru lane speed slip 22 seconds at franchise stores during Friday dinner vs corp stores?"
+              No <span className="font-mono">gold.fct_dt_speed_by_ownership_daypart_daily</span> exists.
+              Manual ETA: 3 to 5 days. dbt-wizard ETA: 90 seconds. <strong>$420K</strong> weekly comp-store sales drag at stake.
+            </p>
+            <div className="mt-4 flex gap-3 flex-wrap">
+              <Link
+                to="/dbt-wizard/scenario"
+                className="inline-flex items-center gap-2 rounded-md font-semibold px-5 py-2.5 text-white hover:opacity-95 transition-opacity"
+                style={{ background: 'var(--copper)' }}
+              >
+                See the scenario
+                <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
+                  <path d="M5 12h14M13 5l7 7-7 7" />
+                </svg>
+              </Link>
+              <Link
+                to="/dbt-wizard/live"
+                className="inline-flex items-center gap-2 rounded-md font-semibold px-5 py-2.5 border border-[var(--copper)] text-[var(--copper-dim)] hover:bg-[var(--copper-bg)] transition-colors"
+              >
+                Watch live build
+              </Link>
+            </div>
+          </div>
+          <div className="md:col-span-5 grid grid-cols-2 gap-3">
+            <WizardStat value="90s" label="dbt-wizard build time" />
+            <WizardStat value="3-5d" label="Manual equivalent" />
+            <WizardStat value="$420K" label="Weekly sales drag at stake" />
+            <WizardStat value="4" label="Sub-agents · one loop" />
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}
+
+function WizardStat({ value, label }: { value: string; label: string }) {
+  return (
+    <div className="rounded-md border border-[var(--hairline)] bg-white p-3">
+      <div className="font-serif text-2xl font-semibold text-[var(--copper-dim)] tabular leading-none">{value}</div>
+      <div className="text-[11px] text-[var(--ink-muted)] mt-1.5 leading-snug">{label}</div>
     </div>
   );
 }
