@@ -35,7 +35,7 @@ export default function MobilePage() {
         <div className="eyebrow">Chief Digital Officer view</div>
         <h1 className="font-serif text-3xl font-semibold tracking-tight text-[var(--espresso-deep)]">Mobile + Loyalty</h1>
         <p className="mt-2 text-[var(--ink-muted)] max-w-3xl leading-relaxed">
-          Hearth App moves 31.8% of orders and gates 28.3M loyalty members. The loyalty agent reads <span className="code-chip">fct_member_lifecycle</span> and proposes next-best offers by segment.
+          Hearth App moves 31.8% of orders and gates 28.3M loyalty members. The loyalty agent reads the member lifecycle gold table and proposes next-best offers by segment.
         </p>
       </header>
 
@@ -161,7 +161,7 @@ export default function MobilePage() {
             <div className="eyebrow" style={{ color: 'var(--copper-dim)' }}>Loyalty agent · live</div>
             <h2 className="font-serif text-xl font-semibold text-[var(--espresso-deep)]">Next-best-offer recommendations by segment</h2>
           </div>
-          <span className="status-pill copper">Cortex Agent</span>
+          <span className="status-pill copper">Agent</span>
         </div>
         <div className="p-5 space-y-4">
           {m.data?.loyalty_agent_recommendations.map((r) => (

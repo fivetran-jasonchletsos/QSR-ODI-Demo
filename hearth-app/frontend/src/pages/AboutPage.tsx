@@ -118,7 +118,7 @@ const PILLARS = [
   {
     tag: 'Pillar 3',
     title: 'Any compute engine',
-    body: 'Snowflake powers BI and Cortex AI. Trino runs ad-hoc analyst queries. DuckDB powers laptop analysis. The loyalty agent and the staffing agent both read the same gold tables.',
+    body: 'Snowflake powers BI and agent workloads. Trino runs ad-hoc analyst queries. DuckDB powers laptop analysis. The loyalty agent and the staffing agent both read the same gold tables.',
   },
 ];
 
@@ -128,7 +128,7 @@ const STACK = [
   { layer: 'Format',     name: 'Apache Iceberg v2',      note: 'Parquet files, ZSTD-compressed, Glue catalog (Polaris-ready).' },
   { layer: 'Catalog',    name: 'AWS Glue Data Catalog',  note: 'Iceberg REST, table-level RBAC, schema-evolution audit.' },
   { layer: 'Transform',  name: 'dbt',                    note: '282 tested models across bronze, silver, gold, marts.' },
-  { layer: 'Query',      name: 'Snowflake (primary)',    note: 'Cortex AI agents · BI workloads · sub-second on gold tables.' },
+  { layer: 'Query',      name: 'Snowflake (primary)',    note: 'Agents on the gold layer · BI workloads · sub-second on gold tables.' },
   { layer: 'Frontend',   name: 'React + Vite + Tailwind',note: 'Static SPA on GitHub Pages, reads JSON snapshot of gold marts.' },
-  { layer: 'Agents',     name: 'Loyalty + Staffing + Supply', note: 'Cortex Agents read fct_member_lifecycle, fct_drive_thru_speed, fct_commodity_exposure.' },
+  { layer: 'Agents',     name: 'Loyalty + Staffing + Supply', note: 'Agents read member lifecycle, drive-thru speed, and commodity exposure gold tables.' },
 ];

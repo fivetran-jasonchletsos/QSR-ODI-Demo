@@ -93,7 +93,7 @@ export default function OperationsPage() {
             <div className="eyebrow" style={{ color: 'var(--copper-dim)' }}>Staffing optimizer · live</div>
             <h2 className="font-serif text-xl font-semibold text-[var(--espresso-deep)]">Peak-hour staffing recommendations</h2>
           </div>
-          <span className="status-pill copper">Cortex Agent</span>
+          <span className="status-pill copper">Agent</span>
         </div>
         <div className="p-5 space-y-4">
           {lab.data?.staffing_agent_suggestions.map((s) => (
