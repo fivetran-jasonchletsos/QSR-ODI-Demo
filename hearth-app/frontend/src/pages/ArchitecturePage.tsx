@@ -15,8 +15,8 @@ import { AliveMedallion, type SourceNode, type EngineNode } from '../components/
 import { useJson } from '../data';
 
 const QSR_SOURCES: SourceNode[] = [
-  { id: 'pos',    label: 'Store POS',         sub: 'SQL Server log-CDC',     logo: 'sqlserver', freshness: '39s lag',  status: 'healthy' },
-  { id: 'supply', label: 'Supply Chain',      sub: 'Oracle LogMiner',         logo: 'oracle',    freshness: '2 min lag', status: 'healthy' },
+  { id: 'pos',    label: 'Store POS',         sub: 'SQL Server log-CDC',     logo: 'sqlserver', freshness: '39s lag',  status: 'healthy', pipelineUrl: 'https://fivetran.com/dashboard/connectors/stresses_mitigate' },
+  { id: 'supply', label: 'Supply Chain',      sub: 'Oracle Binary Log Reader',         logo: 'oracle',    freshness: '2 min lag', status: 'healthy', pipelineUrl: 'https://fivetran.com/dashboard/connectors/speaking_superman' },
   { id: 'app',    label: 'Mobile App Orders', sub: 'Real-time event stream', logo: 'hl7',       freshness: 'live',      status: 'healthy', streaming: true },
   { id: 'fda',    label: 'FDA Recall Feed',   sub: 'Daily regulatory pull', logo: 'cms',       freshness: '1d lag',   status: 'healthy' },
 ];
@@ -340,7 +340,9 @@ export default function ArchitecturePage() {
             <p className="text-sm text-[var(--ink-muted)] mt-1">
               Tests defined in dbt Labs run on every build, against the same Iceberg tables every
               engine reads. Failures block promotion to the next layer &mdash; bad data never
-              reaches the floor.
+              reaches the floor. Paired with the Great Expectations checkpoints below: GX runs
+              suite-based expectations against raw landings; dbt enforces SQL-native contracts
+              across bronze, silver, and gold.
             </p>
           </div>
           <div className="inline-flex items-center gap-1.5 rounded-sm px-2.5 py-1.5 text-[10px] font-bold uppercase tracking-wider text-white shrink-0" style={{ background: '#FF694A' }}>
@@ -385,6 +387,8 @@ export default function ArchitecturePage() {
           <span className="uppercase tracking-wider font-semibold">dbt build · merged into Fivetran</span>
         </div>
       </section>
+
+      <GreatExpectationsPanel />
 
       <BeforeAfterPanel />
     </div>
@@ -700,6 +704,212 @@ function Policy({ label, value }: { label: string; value: string }) {
         <span className="text-[var(--ink-muted)]"> · {value}</span>
       </div>
     </li>
+  );
+}
+
+// =============================================================================
+// GreatExpectationsPanel — Fivetran-stewarded OSS data-quality gate
+// =============================================================================
+interface GxSuite {
+  suite: string;
+  table: string;
+  layer: 'bronze' | 'silver' | 'gold';
+  expectations: number;
+  passing: number;
+  last_run: string;
+  why: string;
+}
+
+const GX_SUITES: GxSuite[] = [
+  {
+    suite: 'pos.toast_orders.completeness',
+    table: 'bronze.toast_pos_orders',
+    layer: 'bronze',
+    expectations: 17,
+    passing: 17,
+    last_run: '07:14:22',
+    why: 'check_id unique + not null; store_id resolves to dim_stores; daypart ∈ {breakfast, lunch, dinner, late}; ticket_total ≥ 0.',
+  },
+  {
+    suite: 'pos.menu_items.referential',
+    table: 'bronze.toast_pos_orders',
+    layer: 'bronze',
+    expectations: 13,
+    passing: 12,
+    last_run: '07:14:31',
+    why: 'Every line item resolves to a known menu_item_id in dim_menu_items; one warn this run on a discontinued LTO SKU still firing on three stores.',
+  },
+  {
+    suite: 'ops.drive_thru.ranges',
+    table: 'bronze.toast_pos_orders',
+    layer: 'bronze',
+    expectations: 9,
+    passing: 9,
+    last_run: '07:11:18',
+    why: 'order-to-handoff time in [0, 1800] seconds; wait_time never negative; throughput ≤ 300 orders/hour per lane.',
+  },
+  {
+    suite: 'supply.erp_lots.contract',
+    table: 'bronze.supplier_erp_lots',
+    layer: 'bronze',
+    expectations: 14,
+    passing: 14,
+    last_run: '07:11:09',
+    why: 'lot_id unique; supplier_id resolves to dim_suppliers; received_dt ≤ today; lot_qty ≥ 0; expiration_dt ≥ received_dt.',
+  },
+  {
+    suite: 'ops.food_safety.temp_log',
+    table: 'bronze.kronos_time_entries',
+    layer: 'bronze',
+    expectations: 11,
+    passing: 11,
+    last_run: '07:13:48',
+    why: 'Walk-in temp logs in [32, 41] °F; hot-hold ≥ 135 °F; cold-hold ≤ 41 °F; log_ts within last 24 hours.',
+  },
+  {
+    suite: 'silver.pos_unified.integrity',
+    table: 'silver.fct_pos_orders_unified',
+    layer: 'silver',
+    expectations: 21,
+    passing: 21,
+    last_run: '07:18:14',
+    why: 'One row per (order_id, channel) across Toast + Aloha + Olo; no orphan lines; tip_pct in [0, 0.40].',
+  },
+  {
+    suite: 'gold.dim_stores.contract',
+    table: 'gold.dim_stores',
+    layer: 'gold',
+    expectations: 15,
+    passing: 15,
+    last_run: '07:22:51',
+    why: 'Output contract: store_id unique; region ∈ published set; open_dt ≤ today; row count within ±2% of yesterday.',
+  },
+  {
+    suite: 'gold.fct_store_day.reconciliation',
+    table: 'gold.fct_store_day',
+    layer: 'gold',
+    expectations: 12,
+    passing: 12,
+    last_run: '07:22:59',
+    why: 'Daily store sales reconcile within $0.01 of bronze.toast + bronze.aloha + bronze.olo sums; same-store-sales never null.',
+  },
+];
+
+function GreatExpectationsPanel() {
+  const totals = GX_SUITES.reduce(
+    (a, s) => ({ exp: a.exp + s.expectations, pass: a.pass + s.passing, suites: a.suites + 1 }),
+    { exp: 0, pass: 0, suites: 0 },
+  );
+  const warns = totals.exp - totals.pass;
+
+  return (
+    <section className="mb-8 research-card overflow-hidden" style={cardStyle}>
+      <header className="research-card-header flex items-start justify-between gap-4" style={cardHeaderStyle}>
+        <div>
+          <div className="eyebrow" style={{ color: '#9a3412' }}>Data Quality · Great Expectations</div>
+          <h2 className="font-serif text-xl font-semibold text-[var(--espresso-deep)] mt-0.5">
+            Validation runs on Bronze before anything reaches Silver.
+          </h2>
+          <p className="text-sm text-[var(--ink-muted)] mt-1 max-w-3xl">
+            Expectation suites define what "valid" looks like for each QSR table &mdash;
+            POS transaction completeness, drive-thru wait-time ranges, menu_item referential
+            integrity, food-safety temp-log bounds. A failed expectation blocks promotion.
+            Same lake, same Iceberg snapshots, just gated.
+          </p>
+        </div>
+        <div className="flex flex-col items-end gap-1.5 shrink-0">
+          <div className="inline-flex items-center gap-1.5 rounded-sm px-2.5 py-1.5 text-[10px] font-bold uppercase tracking-wider text-white" style={{ background: '#9a3412' }}>
+            GX Core · OSS
+          </div>
+          <div className="text-[10px] text-[var(--ink-soft)] font-mono">Fivetran-stewarded</div>
+        </div>
+      </header>
+
+      <div className="grid grid-cols-2 md:grid-cols-4 divide-y-0 md:divide-x divide-[var(--hairline-soft,#e8e4d8)]">
+        <RecoveryTile label="Expectation suites"     big={String(totals.suites)} sub="across bronze · silver · gold layers" />
+        <RecoveryTile label="Expectations · today"   big={`${totals.pass}/${totals.exp}`} sub={`${warns} warn · 0 errors · gates Silver promotion`} color={warns ? '#b45309' : '#16a34a'} />
+        <RecoveryTile label="Checkpoint cadence"     big="every sync" sub="triggered by Fivetran sync-complete · runs before dbt build" />
+        <RecoveryTile label="Failed-expectation queue" big="4 rows" sub="retired LTO SKU still firing on 3 stores · held in dlq.gx_quarantine · auto-retried after suite update" color="#b45309" />
+      </div>
+
+      <div className="overflow-x-auto border-t border-[var(--hairline-soft,#e8e4d8)]">
+        <table className="min-w-full text-sm" style={{ fontVariantNumeric: 'tabular-nums' }}>
+          <thead className="border-b border-[var(--hairline)]" style={{ background: 'var(--paper-deep,#f4efe2)' }}>
+            <tr>
+              <Th>Layer</Th>
+              <Th>Suite</Th>
+              <Th>Table under test</Th>
+              <Th align="right">Expectations</Th>
+              <Th align="right">Last run</Th>
+              <Th>What it asserts</Th>
+            </tr>
+          </thead>
+          <tbody className="divide-y divide-[var(--hairline-soft,#e8e4d8)]">
+            {GX_SUITES.map((s) => {
+              const ok = s.passing === s.expectations;
+              return (
+                <tr key={s.suite} className="hover:bg-[var(--paper-deep,#f4efe2)] cursor-default">
+                  <td className="px-4 py-2.5"><LayerChip layer={s.layer} /></td>
+                  <td className="px-4 py-2.5 font-mono text-[12px] text-[var(--espresso-deep)]">{s.suite}</td>
+                  <td className="px-4 py-2.5 text-xs text-[var(--ink-muted)] font-mono">{s.table}</td>
+                  <td className="px-4 py-2.5 text-right font-semibold" style={{ color: ok ? '#16a34a' : '#b45309' }}>
+                    {s.passing}/{s.expectations}
+                    {!ok && <span className="ml-1 text-[10px] uppercase tracking-wider">warn</span>}
+                  </td>
+                  <td className="px-4 py-2.5 text-right text-xs text-[var(--ink-muted)] font-mono">{s.last_run}</td>
+                  <td className="px-4 py-2.5 text-xs text-[var(--ink)] leading-snug max-w-md">{s.why}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-0 divide-y md:divide-y-0 md:divide-x divide-[var(--hairline-soft,#e8e4d8)] border-t border-[var(--hairline-soft,#e8e4d8)]">
+        <div className="p-5">
+          <div className="text-[10px] uppercase tracking-[0.16em] text-[var(--ink-soft)] font-semibold mb-3">Sample expectation suite · pos.toast_orders.completeness</div>
+          <pre className="font-mono text-[11.5px] leading-relaxed overflow-x-auto rounded-sm p-3" style={{ background: '#0b2545', color: '#e6e9f0' }}><code>{`# pos_toast_orders_completeness.yml
+expectation_suite_name: pos.toast_orders.completeness
+data_asset_name: bronze.toast_pos_orders
+
+expectations:
+  - expect_column_values_to_not_be_null:
+      column: check_id
+  - expect_column_values_to_be_unique:
+      column: check_id
+  - expect_column_values_to_be_in_set:
+      column: daypart
+      value_set: [breakfast, lunch, dinner, late]
+  - expect_column_values_to_be_between:
+      column: ticket_total_usd
+      min_value: 0
+      max_value: 500
+  - expect_column_values_to_be_between:
+      column: drive_thru_wait_seconds
+      min_value: 0
+      max_value: 1800
+  - expect_table_row_count_to_be_between:
+      min_value: 500000
+      max_value: 900000`}</code></pre>
+        </div>
+        <div className="p-5">
+          <div className="text-[10px] uppercase tracking-[0.16em] text-[var(--ink-soft)] font-semibold mb-3">How this fits the stack</div>
+          <ul className="space-y-2.5 text-sm">
+            <Policy label="Fivetran moves" value="POS CDC · supplier ERP · mobile app stream · FDA recall feed into Bronze (Iceberg)" />
+            <Policy label="Great Expectations validates" value="Bronze landings against suites before Silver promotion" />
+            <Policy label="dbt transforms" value="Silver + Gold marts; dbt tests assert SQL-level constraints" />
+            <Policy label="Failed rows" value="route to dlq.gx_quarantine on the same lake; retried after suite update" />
+            <Policy label="Open source" value="GX Core remains community-driven; Fivetran funds maintenance, ecosystem, and engineering investment" />
+            <Policy label="Community" value="github.com/great-expectations/great_expectations · thousands of teams use GX outside Fivetran's customer base" />
+          </ul>
+          <div className="mt-4 pt-3 border-t border-[var(--hairline-soft,#e8e4d8)] text-[11px] text-[var(--ink-soft)] leading-relaxed">
+            On May 13, 2026 Fivetran announced it is becoming steward of the Great Expectations open
+            source community and the GX Core project, supporting ongoing maintenance, ecosystem
+            integrations, and community engagement. Same open project, backed by sustained engineering.
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }
 
