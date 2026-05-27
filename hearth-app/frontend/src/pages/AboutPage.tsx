@@ -129,6 +129,6 @@ const STACK = [
   { layer: 'Catalog',    name: 'AWS Glue Data Catalog',  note: 'Iceberg REST, table-level RBAC, schema-evolution audit.' },
   { layer: 'Transform',  name: 'dbt',                    note: '282 tested models across bronze, silver, gold, marts.' },
   { layer: 'Query',      name: 'Snowflake (primary)',    note: 'Agents on the gold layer · BI workloads · sub-second on gold tables.' },
-  { layer: 'Frontend',   name: 'React + Vite + Tailwind',note: 'Static SPA on GitHub Pages, reads JSON snapshot of gold marts.' },
+  { layer: 'Frontend',   name: 'React + Vite + Tailwind',note: 'Static SPA on GitHub Pages, reads the gold marts via Snowflake / Athena / Trino.' },
   { layer: 'Agents',     name: 'Loyalty + Staffing + Supply', note: 'Agents read member lifecycle, drive-thru speed, and commodity exposure gold tables.' },
 ];
