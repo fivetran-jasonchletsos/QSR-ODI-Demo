@@ -2,6 +2,26 @@
   "generated_at": "2026-05-20T08:00:00Z",
   "connectors": [
     {
+      "name": "Store POS (SQL Server)",
+      "source": "sql_server",
+      "status": "ok",
+      "rows_24h": 14820400,
+      "freshness_min": 4,
+      "tables": 18,
+      "lineage": "Fivetran",
+      "fivetran_id": "stresses_mitigate"
+    },
+    {
+      "name": "Supply Chain (Oracle)",
+      "source": "oracle",
+      "status": "ok",
+      "rows_24h": 14820400,
+      "freshness_min": 4,
+      "tables": 18,
+      "lineage": "Fivetran",
+      "fivetran_id": "speaking_superman"
+    },
+    {
       "name": "Toast POS",
       "source": "POS",
       "status": "ok",

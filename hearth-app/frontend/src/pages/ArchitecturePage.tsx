@@ -77,7 +77,7 @@ const ENGINES: QueryEngine[] = [
   {
     name: 'Snowflake',
     status: 'active',
-    description: 'Primary engine for the Hearth gold layer. Reads Iceberg externals through Snowflake Open Catalog; auto-suspends between queries. Powers the operations site, the loyalty agents, and Cortex Analyst.',
+    description: 'Primary engine for the Hearth gold layer. Reads Iceberg externals through Snowflake Open Catalog; auto-suspends between queries. Powers the operations site, the loyalty agents, and the dbt-wizard run-time agents. Humans and agents read the same gold layer.',
     sample_query: `SELECT
   l.region, l.store_count,
   s.same_store_sales_growth_4w,
